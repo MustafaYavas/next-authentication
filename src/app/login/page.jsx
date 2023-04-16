@@ -42,8 +42,11 @@ const LoginPage = () => {
               theme: 'light',
             });
         })
-        .catch((err) => {});
-    } catch (err) {
+        .catch((err) => {})
+        .finally(() => {
+          setLoading(false);
+        });
+    } catch (error) {
       throw new Error(error);
     }
   };
