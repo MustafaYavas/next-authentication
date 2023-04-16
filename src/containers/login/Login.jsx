@@ -133,7 +133,7 @@ const LoginContainer = ({ signup, login, loading }) => {
           className="border border-sky-700 py-2 px-3 rounded-lg w-full text-black hover:bg-sky-700 hover:text-white"
           onClick={() => signIn('google')}
         >
-          Google
+          Login with Google
         </button>
       </div>
 
