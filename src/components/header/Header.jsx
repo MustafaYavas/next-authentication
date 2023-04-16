@@ -4,7 +4,7 @@ import { useSession, signOut } from 'next-auth/react';
 
 const Header = () => {
   const { data } = useSession();
-  console.log(data);
+
   return (
     <header className="flex justify-between items-center bg-transparent p-5 fixed w-full shadow-2xl">
       <div className="logo">

@@ -7,7 +7,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const LoginPage = () => {
   const router = useRouter();
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const signup = async (name, email, password) => {
@@ -43,9 +42,7 @@ const LoginPage = () => {
               theme: 'light',
             });
         })
-        .catch((err) => {
-          setError(err.error);
-        });
+        .catch((err) => {});
     } catch (err) {
       throw new Error(error);
     }
@@ -53,12 +50,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <LoginContainer
-        signup={signup}
-        login={login}
-        error={error}
-        loading={loading}
-      />
+      <LoginContainer signup={signup} login={login} loading={loading} />
       <ToastContainer />
     </>
   );

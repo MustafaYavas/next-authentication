@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 
-const LoginContainer = ({ signup, login, error, loading }) => {
+const LoginContainer = ({ signup, login, loading }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -33,6 +33,11 @@ const LoginContainer = ({ signup, login, error, loading }) => {
     setName('');
     setEmail('');
     setPassword('');
+  };
+
+  const checkDisable = () => {
+    if (email === '' || password === '') return true;
+    return false;
   };
 
   return (
@@ -87,13 +92,18 @@ const LoginContainer = ({ signup, login, error, loading }) => {
           </span>
         )}
 
-        {error && (
-          <span className="mt-5 mb-3 text-sm text-red-700">{error}</span>
-        )}
         <div className="flex justify-center">
           <button
+            disabled={checkDisable()}
             type="submit"
-            className="bg-sky-700 py-2 px-3 rounded-lg w-full text-white hover:bg-sky-800"
+            className={` py-2 px-3 rounded-lg w-full text-white ${
+              checkDisable()
+                ? 'cursor-not-allowed'
+                : 'bg-sky-700 hover:bg-sky-800'
+            }`}
+            style={{
+              backgroundColor: checkDisable() ? 'rgba(3, 105, 161, .5)' : '',
+            }}
           >
             {isLogin ? 'Login' : 'Signup'}
           </button>
@@ -108,6 +118,7 @@ const LoginContainer = ({ signup, login, error, loading }) => {
             onClick={() => {
               setIsLogin(!isLogin);
               setShowSignupMessage(false);
+              resetInputs();
             }}
           >
             {isLogin ? 'Signup' : 'Login'}
