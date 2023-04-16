@@ -3,7 +3,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
 
 const LoginContainer = ({ signup, login, error, loading }) => {
   const [isLogin, setIsLogin] = useState(true);
