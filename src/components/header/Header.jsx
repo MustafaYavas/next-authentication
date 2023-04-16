@@ -4,7 +4,7 @@ import { useSession, signOut } from 'next-auth/react';
 
 const Header = () => {
   const { data } = useSession();
-
+  console.log(data);
   return (
     <header className="flex justify-between items-center bg-transparent p-5 fixed w-full shadow-2xl">
       <div className="logo">
@@ -13,7 +13,7 @@ const Header = () => {
         </Link>
       </div>
 
-      <nav>
+      <nav className="flex items-center">
         {data?.user && (
           <Link href="/admin" className="hover:text-sky-500">
             Admin
@@ -22,14 +22,24 @@ const Header = () => {
         {data?.user ? (
           <span
             onClick={() => signOut()}
-            className="ml-4 hover:text-sky-500 cursor-pointer"
+            className="mx-4 hover:text-sky-500 cursor-pointer"
           >
             Signout
           </span>
         ) : (
-          <Link className="ml-4 hover:text-sky-500" href="/login">
+          <Link className="mx-4 hover:text-sky-500" href="/login">
             Login
           </Link>
+        )}
+
+        {data?.user?.image && (
+          <img
+            src={data.user.image}
+            alt="profile-pic"
+            width={24}
+            height={24}
+            className="rounded-full cursor-pointer"
+          />
         )}
       </nav>
     </header>
