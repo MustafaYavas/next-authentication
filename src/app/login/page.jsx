@@ -5,10 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-export const metadata = {
-  title: 'NextAuth | Login',
-};
-
 const LoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState(null);
