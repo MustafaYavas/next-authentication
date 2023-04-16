@@ -6,7 +6,7 @@ const Header = () => {
   const { data } = useSession();
 
   return (
-    <header className="flex justify-between items-center bg-transparent p-5 fixed w-full shadow-2xl">
+    <header className="flex justify-between items-center bg-slate-800 p-5 fixed w-full shadow-2xl">
       <div className="logo">
         <Link href="/" className="flex justify-center items-center gap-3">
           <Image src="/images/logo.png" alt="logo" width={24} height={24} />

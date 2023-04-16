@@ -41,7 +41,11 @@ const LoginContainer = ({ signup, login, loading }) => {
   };
 
   return (
-    <div className="bg-white shadow-2xl px-5 py-5 text-black rounded-lg w-1/3">
+    <div
+      className={`bg-white shadow-2xl px-5 py-5 text-black rounded-lg w-3/4 md:w-1/3 ${
+        isLogin ? 'mt-10' : 'mt-36'
+      } md:mt-0`}
+    >
       <h3 className="mb-5 text-center text-2xl">
         {isLogin ? 'Login' : 'Signup'}
       </h3>
@@ -96,7 +100,7 @@ const LoginContainer = ({ signup, login, loading }) => {
           <button
             disabled={checkDisable()}
             type="submit"
-            className={` py-2 px-3 rounded-lg w-full text-white ${
+            className={` py-2 px-3 rounded-lg w-full text-white text-sm md:text-lg ${
               checkDisable()
                 ? 'cursor-not-allowed'
                 : 'bg-sky-700 hover:bg-sky-800'
@@ -130,7 +134,8 @@ const LoginContainer = ({ signup, login, loading }) => {
       <div>
         <button
           type="button"
-          className="border border-sky-700 py-2 px-3 rounded-lg w-full text-black hover:bg-sky-700 hover:text-white"
+          className="border border-sky-700 py-2 px-3 rounded-lg w-full text-black 
+          hover:bg-sky-700 hover:text-white text-sm md:text-md"
           onClick={() => signIn('google')}
         >
           Login with Google
