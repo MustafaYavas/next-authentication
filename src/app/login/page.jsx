@@ -12,6 +12,7 @@ export const metadata = {
 const LoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const signup = async (name, email, password) => {
     try {
@@ -25,6 +26,7 @@ const LoginPage = () => {
   };
 
   const login = async (email, password) => {
+    setLoading(true);
     try {
       signIn('credentials', {
         redirect: false,
@@ -55,7 +57,12 @@ const LoginPage = () => {
 
   return (
     <>
-      <LoginContainer signup={signup} login={login} error={error} />
+      <LoginContainer
+        signup={signup}
+        login={login}
+        error={error}
+        loading={loading}
+      />
       <ToastContainer />
     </>
   );

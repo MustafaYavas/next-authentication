@@ -3,7 +3,9 @@ import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const LoginContainer = ({ signup, login, error }) => {
+import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
+
+const LoginContainer = ({ signup, login, error, loading }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -123,6 +125,8 @@ const LoginContainer = ({ signup, login, error }) => {
           Google
         </button>
       </div>
+
+      {loading && <LoadingSpinner />}
     </div>
   );
 };
