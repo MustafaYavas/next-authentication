@@ -1,5 +1,7 @@
 'use client';
+import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const LoginContainer = ({ signup, login, error }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -7,6 +9,10 @@ const LoginContainer = ({ signup, login, error }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showSignupMessage, setShowSignupMessage] = useState(false);
+  const session = useSession();
+  const router = useRouter();
+
+  if (session?.status === 'authenticated') router.replace('/');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,11 +98,11 @@ const LoginContainer = ({ signup, login, error }) => {
         </div>
       </form>
 
-      <div className="mt-5 text-sm">
+      <div className="mt-5 text-sm text-center">
         <p>
           {isLogin ? 'Does not have an account? ' : 'Already have an account? '}
           <span
-            className="cursor-pointer hover:underline"
+            className="cursor-pointer hover:underline text-sky-700"
             onClick={() => {
               setIsLogin(!isLogin);
               setShowSignupMessage(false);
@@ -105,6 +111,17 @@ const LoginContainer = ({ signup, login, error }) => {
             {isLogin ? 'Signup' : 'Login'}
           </span>
         </p>
+        <p className="my-5">OR</p>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          className="border border-sky-700 py-2 px-3 rounded-lg w-full text-black hover:bg-sky-700 hover:text-white"
+          onClick={() => signIn('google')}
+        >
+          Google
+        </button>
       </div>
     </div>
   );

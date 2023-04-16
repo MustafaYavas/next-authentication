@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
+import GoogleProvider from 'next-auth/providers/google';
 
 import User from '@/models/user';
 import connectMongo from '@/libs/db';
@@ -46,6 +47,10 @@ export default NextAuth({
 
         return existingUser;
       },
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   pages: {
