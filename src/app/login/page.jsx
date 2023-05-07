@@ -11,7 +11,6 @@ const LoginPage = () => {
   const searchParams = useSearchParams();
 
   const cbUrl = searchParams.get('callbackUrl');
-  console.log(cbUrl);
 
   const signup = async (name, email, password) => {
     try {
