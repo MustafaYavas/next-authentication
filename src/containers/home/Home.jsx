@@ -8,7 +8,8 @@ const HomeContainer = () => {
 
   return (
     <div className="text-center">
-      <h1 className="mb-5">HOME - Everyone can see this page!</h1>
+      <h1 className="mb-2 text-lg md:text-2xl">HOME</h1>
+      <p className="mb-5">Everyone can see this page!</p>
       {data?.user ? (
         <p>Welcome, {data.user.name}</p>
       ) : (
