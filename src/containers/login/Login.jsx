@@ -1,7 +1,6 @@
 'use client';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 
@@ -11,10 +10,6 @@ const LoginContainer = ({ signup, login, loading }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showSignupMessage, setShowSignupMessage] = useState(false);
-  const session = useSession();
-  const router = useRouter();
-
-  if (session?.status === 'authenticated') router.replace('/');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -136,7 +131,7 @@ const LoginContainer = ({ signup, login, loading }) => {
           type="button"
           className="border border-sky-700 py-2 px-3 rounded-lg w-full text-black 
           hover:bg-sky-700 hover:text-white text-sm md:text-md"
-          onClick={() => signIn('google')}
+          onClick={() => signIn('google', { callbackUrl: '/profile' })}
         >
           Login with Google
         </button>

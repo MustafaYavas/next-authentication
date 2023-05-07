@@ -24,9 +24,9 @@ const LoginPage = () => {
     setLoading(true);
     try {
       signIn('credentials', {
-        redirect: false,
         email,
         password,
+        callbackUrl: '/profile',
       })
         .then((res) => {
           if (res.ok) router.replace('/');
