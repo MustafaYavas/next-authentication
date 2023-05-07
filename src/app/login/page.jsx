@@ -1,13 +1,17 @@
 'use client';
 import LoginContainer from '@/containers/login/Login';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 const LoginPage = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const searchParams = useSearchParams();
+
+  const cbUrl = searchParams.get('callbackUrl');
+  console.log(cbUrl);
 
   const signup = async (name, email, password) => {
     try {
@@ -26,7 +30,7 @@ const LoginPage = () => {
       signIn('credentials', {
         email,
         password,
-        callbackUrl: '/profile',
+        callbackUrl: cbUrl ? cbUrl : '/',
       })
         .then((res) => {
           if (res.ok) router.replace('/');

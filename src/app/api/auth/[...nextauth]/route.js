@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import User from '@/models/user';
 import connectMongo from '@/libs/db';
 
-const handler = NextAuth({
+export const authOptions = {
   session: {
     strategy: 'jwt',
   },
@@ -58,6 +58,8 @@ const handler = NextAuth({
     error: '/login',
   },
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
